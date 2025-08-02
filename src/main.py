@@ -20,10 +20,10 @@ app.register_blueprint(games_bp, url_prefix='/api/games')
 
 # uncomment if you need to use database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#db.init_app(app)
-#with app.app_context():
-#    db.create_all()
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+with app.app_context():
+    db.create_all()
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
